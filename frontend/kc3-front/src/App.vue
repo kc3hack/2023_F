@@ -18,7 +18,7 @@ import { RouterView } from "vue-router";
 .main-bg {
   background-image: url("@/assets/main-wood.jpg");
   background-size: cover;
-  background-color: rgba(255,255,255,0.25);
+  background-color: rgba(255, 255, 255, 0.25);
   background-blend-mode: lighten;
 }
 </style>
