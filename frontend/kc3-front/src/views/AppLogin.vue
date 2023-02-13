@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import LoginView from "@/components/LoginView.vue";
+import Login from "@/components/Login.vue";
 </script>
 
 <template>
     <div class="main-bg">
-      <LoginView></LoginView>
+      <Login></Login>
     </div>
 </template>
