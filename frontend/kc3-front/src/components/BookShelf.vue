@@ -169,12 +169,4 @@ h2 {
   margin-left: -0.3%;
   box-shadow: 0px -10px 5px brown;
 }
-
-.hover_anim {
-  transition-duration: 0.3s;
-}
-
-.hover_anim:hover {
-  transform: scale(1.1);
-}
 </style>
