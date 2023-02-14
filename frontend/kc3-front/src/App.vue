@@ -6,7 +6,7 @@ import { RouterView } from "vue-router";
 <template>
   <div id="app" class="main-bg">
     <v-app>
-      <Header></Header>
+      <Header class="change-font"></Header>
       <v-main>
         <RouterView class="py-10"></RouterView>
       </v-main>
@@ -14,7 +14,13 @@ import { RouterView } from "vue-router";
   </div>
 </template>
 
-<style scoped>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Murecho:wght@500;900&display=swap");
+
+.change-font {
+  font-family: "Murecho", sans-serif;
+}
+
 .main-bg {
   background-image: url("@/assets/main-wood.jpg");
   background-size: cover;
