@@ -3,49 +3,42 @@ import { ref } from "vue";
 import BookComponent from "./BookComponent.vue";
 
 const bookListInit = new Map<number, Book>();
+
 bookListInit.set(11111111111, {
   isbn: 11111111111,
   title: "sample",
-  detail: "hoge",
   count: 1,
   date: new Date(2023, 2, 12),
   latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784088825656.jpg",
 });
-
 bookListInit.set(2222222222222, {
   isbn: 2222222222222,
   title: "test",
-  detail: "aaaaaaa",
   count: 1,
   date: new Date(2023, 2, 12),
   latest_num: 1,
   image_url: "https://cover.openbd.jp/9784040646176.jpg",
 });
-
 bookListInit.set(2222222222223, {
   isbn: 2222222222223,
   title: "test",
-  detail: "aaaaaaa",
   count: 1,
   date: new Date(2023, 2, 12),
   latest_num: 1,
   image_url: "https://cover.openbd.jp/9784088917191.jpg",
 });
-
 bookListInit.set(2222222222224, {
   isbn: 2222222222224,
   title: "test",
-  detail: "aaaaaaa",
   count: 1,
   date: new Date(2023, 2, 12),
   latest_num: 1,
   image_url: "https://cover.openbd.jp/9784088904320.jpg",
 });
-
 bookListInit.set(2222224222223, {
   isbn: 2222224222223,
   title: "test",
-  detail: "aaaaaaa",
   count: 1,
   date: new Date(2023, 2, 12),
   latest_num: 1,
@@ -57,7 +50,6 @@ const bookList = ref(bookListInit);
 interface Book {
   isbn: number;
   title?: string;
-  detail?: string;
   count?: number;
   date: Date;
   latest_num?: number;
@@ -67,13 +59,12 @@ interface Book {
 
 <template>
   <v-container class="wood_outline">
-    <v-row class="bg" dense>
+    <v-row class="bg none_books" dense>
       <BookComponent
         v-for="[id, book] in bookList"
         :key="id"
         :isbn="book.isbn"
         :title="book.title"
-        :detail="book.detail"
         :count="book.count"
         :date="book.date"
         :latest_num="book.latest_num"
@@ -83,13 +74,42 @@ interface Book {
 
     <h2 class="wood_line p-3"></h2>
 
-    <v-row class="bg" dense>
+    <v-row class="bg none_books" dense>
       <BookComponent
         v-for="[id, book] in bookList"
         :key="id"
         :isbn="book.isbn"
         :title="book.title"
-        :detail="book.detail"
+        :count="book.count"
+        :date="book.date"
+        :latest_num="book.latest_num"
+        :image_url="book.image_url"
+      ></BookComponent>
+    </v-row>
+
+    <h2 class="wood_line"></h2>
+
+    <v-row class="bg none_books" dense>
+      <BookComponent
+        v-for="[id, book] in bookList"
+        :key="id"
+        :isbn="book.isbn"
+        :title="book.title"
+        :count="book.count"
+        :date="book.date"
+        :latest_num="book.latest_num"
+        :image_url="book.image_url"
+      ></BookComponent>
+    </v-row>
+
+    <h2 class="wood_line"></h2>
+
+    <v-row class="bg none_books" dense>
+      <BookComponent
+        v-for="[id, book] in bookList"
+        :key="id"
+        :isbn="book.isbn"
+        :title="book.title"
         :count="book.count"
         :date="book.date"
         :latest_num="book.latest_num"
@@ -105,39 +125,6 @@ interface Book {
         :key="id"
         :isbn="book.isbn"
         :title="book.title"
-        :detail="book.detail"
-        :count="book.count"
-        :date="book.date"
-        :latest_num="book.latest_num"
-        :image_url="book.image_url"
-      ></BookComponent>
-    </v-row>
-
-    <h2 class="wood_line"></h2>
-
-    <v-row class="bg" dense>
-      <BookComponent
-        v-for="[id, book] in bookList"
-        :key="id"
-        :isbn="book.isbn"
-        :title="book.title"
-        :detail="book.detail"
-        :count="book.count"
-        :date="book.date"
-        :latest_num="book.latest_num"
-        :image_url="book.image_url"
-      ></BookComponent>
-    </v-row>
-
-    <h2 class="wood_line"></h2>
-
-    <v-row class="bg" dense>
-      <BookComponent
-        v-for="[id, book] in bookList"
-        :key="id"
-        :isbn="book.isbn"
-        :title="book.title"
-        :detail="book.detail"
         :count="book.count"
         :date="book.date"
         :latest_num="book.latest_num"
@@ -168,5 +155,9 @@ h2 {
   width: 101%;
   margin-left: -0.3%;
   box-shadow: 0px -10px 5px brown;
+}
+
+.none_books {
+  min-height: 150px;
 }
 </style>
