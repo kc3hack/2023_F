@@ -8,6 +8,13 @@ const routeSettings: RouteRecordRaw[] = [
     name: "AppTop",
     component: AppTop,
   },
+  {
+    path: "/login",
+    name: "login",
+    component: () => {
+      return import("@/views/AppLogin.vue");
+    }
+  }
 ];
 
 const router = createRouter({
