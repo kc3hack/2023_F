@@ -22,3 +22,6 @@ archive.zip
 # vim temporary files
 *~
 .*.sw?
+
+# add
+.env
