@@ -5,11 +5,11 @@ const drawer = ref(false);
 const menuItems = [
     {
         name: '本棚',
-        url: '#'
+        url: '/'
     },
     {
         name: 'ISBN登録',
-        url: '#'
+        url: '/search'
     },
     {
         name: '書籍確認',
@@ -29,8 +29,12 @@ const menuItems = [
     <v-navigation-drawer location="end" v-model="drawer" fixed temporary>
         <v-list nav dense>
           <v-list-item-group>
-            <v-list-item v-for="(menuItem, index) in menuItems" :key="index">
-                <v-list-item-title>{{ menuItem.name }}</v-list-item-title>
+            <v-list-item>
+              <v-list-item-title v-for="(menuItem, index) in menuItems" :key="index">
+                <div class="mt-16">
+                <RouterLink :to="menuItem.url" style="text-decoration: none; color: inherit">{{ menuItem.name }}</RouterLink>
+                </div>
+              </v-list-item-title>
             </v-list-item>
           </v-list-item-group>
         </v-list>
