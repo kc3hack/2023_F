@@ -14,6 +14,7 @@ class User(Base):
 class Books(Base):
     #本の登録を行うクラス
     #title, have_books, resist_date, new_books
+    __tablename__ = "books"
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(255))
     have_books = Column(Integer)
