@@ -28,11 +28,9 @@ const menuItems = [
     
     <v-navigation-drawer location="end" v-model="drawer" fixed temporary>
         <v-list nav dense>
-          <v-list-item-group>
             <v-list-item v-for="(menuItem, index) in menuItems" :key="index">
                 <v-list-item-title>{{ menuItem.name }}</v-list-item-title>
             </v-list-item>
-          </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
     </div>

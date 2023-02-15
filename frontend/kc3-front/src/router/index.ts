@@ -14,6 +14,13 @@ const routeSettings: RouteRecordRaw[] = [
     component: () => {
       return import("@/views/AppLogin.vue");
     }
+  },
+  {
+    path: "/stock",
+    name: "stock",
+    component: () => {
+      return import("@/views/StockCheck.vue");
+    }
   }
 ];
 
