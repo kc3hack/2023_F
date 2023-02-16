@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import type { Book } from "@/interfaces";
 import { useUsersStore } from "@/stores/users";
 
 const userStore = useUsersStore();
 
-const bookListInit = userStore.getBooks;
-
-const books = ref(bookListInit);
+const bookList = computed(
+  (): Map<number, Book> => {
+    return userStore.getBooks;
+  }
+);
 
 const headersInit = [
   {
@@ -49,7 +51,7 @@ const headers = ref(headersInit);
           </thead>
 
           <tbody>
-            <tr v-for="[id, book] in books" :key="id">
+            <tr v-for="[id, book] in bookList" :key="id">
               <td>
                 <v-avatar size="80">
                   <v-img :src="book.image_url"></v-img>

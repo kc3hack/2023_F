@@ -8,7 +8,7 @@ userStore.testInit();
 </script>
 
 <template>
-  <div id="app" class="main-bg">
+  <div id="app">
     <v-app>
       <Header class="change-font"></Header>
       <v-main>
@@ -30,5 +30,6 @@ userStore.testInit();
   background-size: cover;
   background-color: rgba(255, 255, 255, 0.25);
   background-blend-mode: lighten;
+  height: 100%;
 }
 </style>
