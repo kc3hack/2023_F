@@ -5,4 +5,11 @@ export interface Book {
   date: Date;
   latest_num?: number;
   image_url?: string;
+  isBookshelf?: boolean;
+}
+
+export interface User {
+  token: string;
+  authUser: string; //address
+  books: Map<number, Book>;
 }

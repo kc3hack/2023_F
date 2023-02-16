@@ -1,103 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Book } from "@/interfaces";
+import { useUsersStore } from "@/stores/users";
 
-const bookListInit = new Map<number, Book>();
+const userStore = useUsersStore();
 
-bookListInit.set(11111111111, {
-  isbn: 11111111111,
-  title: "sample",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784088825656.jpg",
-});
-bookListInit.set(2222222222222, {
-  isbn: 2222222222222,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784040646176.jpg",
-});
-bookListInit.set(2222222222223, {
-  isbn: 2222222222223,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784088917191.jpg",
-});
-bookListInit.set(2222222222224, {
-  isbn: 2222222222224,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784088904320.jpg",
-});
-bookListInit.set(2222224222223, {
-  isbn: 2222224222223,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
-
-bookListInit.set(2222224222223, {
-  isbn: 2222224222223,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
-
-bookListInit.set(2222224222225, {
-  isbn: 2222224222225,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
-
-bookListInit.set(2222224222226, {
-  isbn: 2222224222226,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
-
-bookListInit.set(2222224222229, {
-  isbn: 2222224222229,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
-
-bookListInit.set(2222224222296, {
-  isbn: 2222224222296,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
-
-bookListInit.set(2222224232296, {
-  isbn: 2222224222296,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
+const bookListInit = userStore.getBooks;
 
 const books = ref(bookListInit);
 

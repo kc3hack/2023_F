@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import Header from "@/components/Header.vue";
 import { RouterView } from "vue-router";
+import { useUsersStore } from "@/stores/users";
+
+const userStore = useUsersStore();
+userStore.testInit();
 </script>
 
 <template>

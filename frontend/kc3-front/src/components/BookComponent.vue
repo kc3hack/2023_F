@@ -8,6 +8,7 @@ const props = withDefaults(defineProps<Props>(), {
   count: 0,
   latest_num: 0,
   image_url: "/src/assets/noimage.png",
+  isBookshelf: false,
 });
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
   date: Date;
   latest_num?: number;
   image_url?: string;
+  isBookshelf: boolean;
 }
 </script>
 
