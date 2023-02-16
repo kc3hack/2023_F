@@ -11,6 +11,20 @@ const routeSettings: RouteRecordRaw[] = [
     component: AppTop,
   },
   {
+    path: "/login",
+    name: "login",
+    component: () => {
+      return import("@/views/AppLogin.vue");
+    },
+  },
+  {
+    path: "/stock",
+    name: "stock",
+    component: () => {
+      return import("@/views/StockCheck.vue");
+    },
+  },
+  {
     path: "/search",
     name: "AppSearch",
     component: AppSearch,

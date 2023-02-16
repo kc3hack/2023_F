@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import Header from "@/components/Header.vue";
 import { RouterView } from "vue-router";
+import { useUsersStore } from "@/stores/users";
+
+const userStore = useUsersStore();
+userStore.testInit();
 </script>
 
 <template>
-  <div id="app" class="main-bg">
+  <div id="app">
     <v-app>
       <Header class="change-font"></Header>
       <v-main>
@@ -26,5 +30,6 @@ import { RouterView } from "vue-router";
   background-size: cover;
   background-color: rgba(255, 255, 255, 0.25);
   background-blend-mode: lighten;
+  height: 100%;
 }
 </style>

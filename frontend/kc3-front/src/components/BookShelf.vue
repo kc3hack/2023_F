@@ -1,60 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import BookComponent from "./BookComponent.vue";
+import { useUsersStore } from "@/stores/users";
+import type { Book } from "@/interfaces";
 
-const bookListInit = new Map<number, Book>();
+const userStore = useUsersStore();
 
-bookListInit.set(11111111111, {
-  isbn: 11111111111,
-  title: "sample",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784088825656.jpg",
+const bookList = computed((): Map<number, Book> => {
+  return userStore.getBooks;
 });
-bookListInit.set(2222222222222, {
-  isbn: 2222222222222,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784040646176.jpg",
-});
-bookListInit.set(2222222222223, {
-  isbn: 2222222222223,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784088917191.jpg",
-});
-bookListInit.set(2222222222224, {
-  isbn: 2222222222224,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784088904320.jpg",
-});
-bookListInit.set(2222224222223, {
-  isbn: 2222224222223,
-  title: "test",
-  count: 1,
-  date: new Date(2023, 2, 12),
-  latest_num: 1,
-  image_url: "https://cover.openbd.jp/9784041011102.jpg",
-});
-
-const bookList = ref(bookListInit);
-
-interface Book {
-  isbn: number;
-  title?: string;
-  count?: number;
-  date: Date;
-  latest_num?: number;
-  image_url?: string;
-}
 </script>
 
 <template>

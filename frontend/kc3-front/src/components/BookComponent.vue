@@ -8,6 +8,7 @@ const props = withDefaults(defineProps<Props>(), {
   count: 0,
   latest_num: 0,
   image_url: "/src/assets/noimage.png",
+  isBookshelf: false,
 });
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
   date: Date;
   latest_num?: number;
   image_url?: string;
+  isBookshelf: boolean;
 }
 </script>
 
@@ -48,9 +50,7 @@ interface Props {
                     <v-icon size="100">mdi-book-account</v-icon>
                   </v-avatar>
                   <div class="me-auto mt-6 ms-auto">
-                    <v-card-title
-                      >持っている本の数</v-card-title
-                    >
+                    <v-card-title>持っている本の数</v-card-title>
                     <v-card-text>{{ count }}冊</v-card-text>
                   </div>
                 </div>
@@ -64,9 +64,7 @@ interface Props {
                     <v-icon size="100">mdi-calendar-multiselect</v-icon>
                   </v-avatar>
                   <div class="me-auto mt-6 ms-auto">
-                    <v-card-title
-                      >登録日</v-card-title
-                    >
+                    <v-card-title>登録日</v-card-title>
                     <v-card-text>{{ date.toLocaleDateString() }}</v-card-text>
                   </div>
                 </div>
@@ -79,9 +77,7 @@ interface Props {
                     <v-icon size="100">mdi-bookshelf</v-icon>
                   </v-avatar>
                   <div class="me-auto mt-6 ms-auto">
-                    <v-card-title
-                      >所持している最新刊</v-card-title
-                    >
+                    <v-card-title>所持している最新刊</v-card-title>
                     <v-card-text>{{ latest_num }}巻</v-card-text>
                   </div>
                 </div>
