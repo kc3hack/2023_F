@@ -5,11 +5,9 @@ import { useUsersStore } from "@/stores/users";
 
 const userStore = useUsersStore();
 
-const bookList = computed(
-  (): Map<number, Book> => {
-    return userStore.getBooks;
-  }
-);
+const bookList = computed((): Map<number, Book> => {
+  return userStore.getBooks;
+});
 
 const headersInit = [
   {

@@ -2,18 +2,13 @@
 import { ref, computed } from "vue";
 import BookComponent from "./BookComponent.vue";
 import { useUsersStore } from "@/stores/users";
-import type {Book} from "@/interfaces"
+import type { Book } from "@/interfaces";
 
 const userStore = useUsersStore();
 
-const bookList = computed(
-  (): Map<number, Book> => {
-    return userStore.getBooks;
-  }
-);
-
-
-
+const bookList = computed((): Map<number, Book> => {
+  return userStore.getBooks;
+});
 </script>
 
 <template>
