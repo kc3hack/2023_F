@@ -6,8 +6,6 @@ import type {Book} from "@/interfaces"
 
 const userStore = useUsersStore();
 
-const bookInitList = userStore.getBooks;
-
 const bookList = computed(
   (): Map<number, Book> => {
     return userStore.getBooks;
