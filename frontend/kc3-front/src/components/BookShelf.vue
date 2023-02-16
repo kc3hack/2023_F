@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import BookComponent from "./BookComponent.vue";
-import type {Book} from "@/interfaces"
+import type { Book } from "@/interfaces";
 
 const bookListInit = new Map<number, Book>();
 
@@ -47,7 +47,6 @@ bookListInit.set(2222224222223, {
 });
 
 const bookList = ref(bookListInit);
-
 </script>
 
 <template>
