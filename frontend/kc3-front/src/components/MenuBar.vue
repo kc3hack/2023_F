@@ -25,7 +25,7 @@ function openSNS(){
     console.log("screen shot");
     let image;
     //TODO 画面スクショ↓
-    html2canvas(document.querySelector('#book-origin' /* スクショしたい範囲(タグ)の属性 */)).then((canvas) => {
+    html2canvas(document.querySelector('#book-origin'),{proxy: "true", useCORS: true}).then((canvas) => {
         const link = document.createElement('a');//aタグ追加
         link.href = canvas.toDataURL();//base64形式で画像url生成
         //image = canvas.toDataURL();
