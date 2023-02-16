@@ -26,19 +26,18 @@ function openSNS(){
     let image;
     //TODO 画面スクショ↓
     html2canvas(document.querySelector('#book-origin' /* スクショしたい範囲(タグ)の属性 */)).then((canvas) => {
-        //const link = document.createElement('a');//
-        //link.href = canvas.toDataURL();//
-        image = canvas.toDataURL();
-        //link.download = `export_image.png`;//
-        //link.click();//
+        const link = document.createElement('a');//aタグ追加
+        link.href = canvas.toDataURL();//base64形式で画像url生成
+        //image = canvas.toDataURL();
+        link.download = `export_image.png`;//画像ダウンロード設定
+        link.click();//ダウンロード
       });
     
     //TODO Twitterへ飛ぶ↓
-	  let s = "自分だけの本棚を公開しました!";
-	  //let url = document.location.href;
+	  /*let s = "自分だけの本棚を公開しました!";
 		//投稿画面を開く
 		let url = "https://twitter.com/intent/tweet?url=" + "&text=" + s +"%20pic.twitter.com/"+image;
-		window.open(url,"_blank","width=1000,height=500");
+		window.open(url,"_blank","width=1000,height=500");*/
 
   }, 1000)
 }
