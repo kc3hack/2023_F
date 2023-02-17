@@ -48,7 +48,6 @@ async function addBook() {
 </script>
 
 <template>
-  テスト:{{isbn}}<br>{{image}}<br>{{title}}<br>{{volume}}<br>{{registerDate}}
   <div class="background">
     <div class="outside">
       
