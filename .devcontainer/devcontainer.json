@@ -1,0 +1,20 @@
+{
+	"name": "app",
+	"dockerComposeFile": "../docker/docker-compose.yaml",
+	"service": "app",
+	"workspaceFolder": "/usr/src/app",
+	"forwardPorts": [
+		8080
+	],
+	"remoteUser": "dev",
+	"postCreateCommand": "chmod u+x ./.devcontainer/postCreateCommand.sh ./.devcontainer/postStartCommand.sh && ./.devcontainer/postCreateCommand.sh",
+	"postStartCommand": "./.devcontainer/postStartCommand.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance"
+			]
+		}
+	}
+}
