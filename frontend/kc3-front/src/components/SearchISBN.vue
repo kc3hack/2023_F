@@ -30,19 +30,24 @@ function searchISBN(){
     let month = origin.getMonth()+1;
     let day = origin.getDate();
     registerDate.value = year + "/"+month +"/"+ day ;
+  }).catch((e) => {
+    alert("ISBNが存在しません.");
   })
 };
 
 
 async function addBook() {
+  const data = new FormData();
+  data.append("isbn", isbn.value);//データ追加
   await axios
-    .get("https://jsonplaceholder.typicode.com/users") //テストurl
+    .get("http://localhost:8000/api/books/", data) //テストurl
     .then((response) => {
       //BEから データを受け取ったときにやる処理
       console.log(response.data);//テスト
     })
     .catch((e) => {
       console.log(e);
+      alert("登録エラーが起こりました.");
     });
 }
 </script>
