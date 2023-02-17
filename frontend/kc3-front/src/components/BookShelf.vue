@@ -5,6 +5,8 @@ import { useUsersStore } from "@/stores/users";
 import type { Book } from "@/interfaces";
 
 const userStore = useUsersStore();
+const test = userStore.userStore.authUser;
+const a = ref(test);
 
 const bookList = computed((): Map<number, Book> => {
   return userStore.getBooks;
@@ -12,6 +14,7 @@ const bookList = computed((): Map<number, Book> => {
 </script>
 
 <template>
+  <p>{{ a }}</p>
   <v-container class="wood_outline">
     <v-row class="bg none_books" dense>
       <BookComponent

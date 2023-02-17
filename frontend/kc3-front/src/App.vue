@@ -4,7 +4,7 @@ import { RouterView } from "vue-router";
 import { useUsersStore } from "@/stores/users";
 
 const userStore = useUsersStore();
-userStore.testInit();
+userStore.Init();
 </script>
 
 <template>
