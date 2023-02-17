@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import type { Book, User } from "@/interfaces";
 import axios from "axios";
+import router from "@/router";
 
 interface State {
   userStore: User;
@@ -49,6 +50,8 @@ export const useUsersStore = defineStore({
 
           const userJSONStr = JSON.stringify(this.userStore);
           sessionStorage.setItem("user", userJSONStr);
+        
+          router.push({path: "/"});
         })
         .catch((e) => {
           console.log(e);
@@ -73,6 +76,8 @@ export const useUsersStore = defineStore({
 
           const userJSONStr = JSON.stringify(this.userStore);
           sessionStorage.setItem("user", userJSONStr);
+
+          router.push({path: "/"});
         })
         .catch((e) => {
           console.log(e);
