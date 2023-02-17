@@ -9,8 +9,7 @@ async function searchISBN() {
     .get("https://jsonplaceholder.typicode.com/users") //テストurl
     .then((response) => {
       //BEから データを受け取ったときにやる処理
-      console.log(response.data);
-      console.log(isbn.value); //テスト
+      console.log(response.data);//テスト
     })
     .catch((e) => {
       console.log(e);
@@ -21,10 +20,16 @@ async function searchISBN() {
 <template>
   <div class="background">
     <div class="outside">
+      
       <div class="search-area">
-        <label for="message">ISBNを入力(ハイフンなし): </label>
-        <input v-model="isbn" type="text" placeholder=" ISBNコード" /><br />
+      ISBN13:<input value="" autofocus placeholder=" ISBN">
+      <v-btn>書籍情報取得</v-btn>
       </div>
+
+      <div class="result-area">
+        <input v-model="title">
+      </div>
+      
 
       <v-btn class="search-button" @click="searchISBN" style="background-color: yellow;">本を検索・追加</v-btn>
     </div>
@@ -40,7 +45,7 @@ async function searchISBN() {
   margin-left: auto;
   margin-right: auto;
   padding: 30px;
-  height: 180px;
+  height: 500px;
   width: 600px;
   text-align: center;
   border: thick double;
