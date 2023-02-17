@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import axios from "axios";
+import { useUsersStore } from "@/stores/users";
+
+const userStore = useUsersStore();
 
 const address = ref("");
 const password = ref("");
@@ -12,40 +14,12 @@ function toggle() {
 
 async function newForm() {
   //新規登録
-  await axios
-    .get("https://api.openbd.jp/v1/get?isbn=978-4-7808-0204-7&pretty") //テストurl
-    .then((response) => {
-      //BEから データを受け取ったときにやる処理
-      console.log(response.data);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-
-  /*
-    await axios
-        .post("https://api.openbd.jp/v1/get?isbn=978-4-7808-0204-7&pretty", data, header)//テストurl
-        .then((response) => {
-            //BEから データを受け取ったときにやる処理
-            console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    */
+  await userStore.signup(address.value, password.value);
 }
 
 async function existForm() {
   //ログイン
-  await axios
-    .get("https://api.openbd.jp/v1/get?isbn=978-4-7808-0204-7&pretty") //テストurl
-    .then((response) => {
-      //BEから データを受け取ったときにやる処理
-      console.log(response.data);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  await userStore.login(address.value, password.value);
 }
 </script>
 

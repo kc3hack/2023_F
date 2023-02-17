@@ -26,7 +26,12 @@ async function searchISBN() {
         <input v-model="isbn" type="text" placeholder=" ISBNコード" /><br />
       </div>
 
-      <v-btn class="search-button" @click="searchISBN" style="background-color: yellow;">本を検索・追加</v-btn>
+      <v-btn
+        class="search-button"
+        @click="searchISBN"
+        style="background-color: yellow"
+        >本を検索・追加</v-btn
+      >
     </div>
   </div>
 </template>
