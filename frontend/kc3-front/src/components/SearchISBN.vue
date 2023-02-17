@@ -2,9 +2,39 @@
 import { ref } from "vue";
 import axios from "axios";
 
-const isbn = ref("");
+let isbn = ref("");
+let image = ref("");
+let title = ref("");
+let volume = ref("");
+let registerDate = ref("");
 
-async function searchISBN() {
+function searchISBN(){
+  let query = isbn.value.split(' ').join('+');
+  // APIを取得
+  const url = "https://api.openbd.jp/v1/get?isbn=" + query + "&pretty";
+  //json
+  fetch(url).then(
+    res => {
+      return res.json();
+  }).then(data => {
+    //表紙
+    image.value = data[0].summary.cover;
+    document.getElementById('thumbnail').setAttribute('src', image.value);
+    //タイトル
+    title.value = data[0].summary.title;
+    //巻数
+    volume.value = data[0].summary.volume;
+    //登録日
+    let origin = new Date();
+    let year = origin.getFullYear();
+    let month = origin.getMonth()+1;
+    let day = origin.getDate();
+    registerDate.value = year + "/"+month +"/"+ day ;
+  })
+};
+
+
+async function addBook() {
   await axios
     .get("https://jsonplaceholder.typicode.com/users") //テストurl
     .then((response) => {
@@ -18,34 +48,37 @@ async function searchISBN() {
 </script>
 
 <template>
+  テスト:{{isbn}}<br>{{image}}<br>{{title}}<br>{{volume}}<br>{{registerDate}}
   <div class="background">
     <div class="outside">
       
       <div class="search-area">
-      ISBN13:<input value="" autofocus placeholder=" ISBN">
-      <v-btn>書籍情報取得</v-btn>
+      ISBN13:<input v-model="isbn" autofocus placeholder=" ISBN">
+      <v-btn @click="searchISBN">書籍情報取得</v-btn>
       </div>
 
       <div class="result-area">
-        <input v-model="title">
+        <img src="" id="thumbnail">
+        <p>タイトル:<input v-model="title" placeholder="title"></p>
+        <p>巻数:<input v-model="volume" placeholder="volume"></p>
+        <p>登録日:<input v-model="registerDate" placeholder="registerDate"></p>
       </div>
-      
 
-      <v-btn class="search-button" @click="searchISBN" style="background-color: yellow;">本を検索・追加</v-btn>
+      <v-btn class="search-button" @click="addBook" style="background-color: yellow;">本を追加</v-btn>
     </div>
   </div>
 </template>
 
 <style>
 .background {
-  padding: 250px;
+  padding: 150px;
 }
 .outside {
   background-color: #e7d0a9;
   margin-left: auto;
   margin-right: auto;
   padding: 30px;
-  height: 500px;
+  height: 600px;
   width: 600px;
   text-align: center;
   border: thick double;
@@ -54,6 +87,13 @@ async function searchISBN() {
 .search-area {
   background-color: lightgray;
   border: solid;
+}
+.result-area{
+  background-color: lightgray;
+  border: solid;
+}
+input{
+  margin: 5px;
 }
 .search-button {
   border-radius: 10px;
