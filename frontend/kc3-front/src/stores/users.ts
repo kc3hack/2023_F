@@ -22,7 +22,7 @@ export const useUsersStore = defineStore({
   },
   actions: {
     //データの変更処理
-    Init(): void {
+    Init() {
       let user;
       const userJSONStr = sessionStorage.getItem("user");
       if (userJSONStr != undefined) {
