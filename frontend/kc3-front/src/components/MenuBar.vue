@@ -13,7 +13,7 @@ const menuItems = [
   },
   {
     name: "書籍確認",
-    url: "#",
+    url: "/stock",
   },
   {
     name: "本棚公開",
