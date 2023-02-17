@@ -15,7 +15,6 @@ const bookList = computed((): Map<number, Book> => {
 </script>
 
 <template>
-  <p>{{ a }}</p>
   <v-container class="wood_outline">
     <v-row class="bg none_books" dense>
       <BookComponent

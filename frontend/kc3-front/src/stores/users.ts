@@ -54,6 +54,30 @@ export const useUsersStore = defineStore({
           console.log(e);
         });
     },
+    async login(address: string, password: string) {
+      const headers = {
+        headers: {
+          "Content-Type": 'application/x-www-form-urlencoded'
+        }
+      };
+
+      await axios
+        .post("/api/auth/token", {
+          username: address,
+          password: password,
+        }, headers)
+        .then((response) => {
+          console.log("ログイン成功");
+          this.userStore.authUser = address;
+          this.userStore.token = response.data.access_token;
+
+          const userJSONStr = JSON.stringify(this.userStore);
+          sessionStorage.setItem("user", userJSONStr);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   },
 });
 
