@@ -15,7 +15,7 @@ const bookList = computed((): Map<number, Book> => {
 </script>
 
 <template>
-  <v-container class="wood_outline">
+  <v-container class="wood_outline" id="book-origin">
     <v-row class="bg none_books" dense>
       <BookComponent
         v-for="[id, book] in bookList"

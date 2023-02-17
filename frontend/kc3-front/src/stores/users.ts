@@ -50,8 +50,8 @@ export const useUsersStore = defineStore({
 
           const userJSONStr = JSON.stringify(this.userStore);
           sessionStorage.setItem("user", userJSONStr);
-        
-          router.push({path: "/"});
+
+          router.push({ path: "/" });
         })
         .catch((e) => {
           console.log(e);
@@ -60,15 +60,19 @@ export const useUsersStore = defineStore({
     async login(address: string, password: string) {
       const headers = {
         headers: {
-          "Content-Type": 'application/x-www-form-urlencoded'
-        }
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       };
 
       await axios
-        .post("/api/auth/token", {
-          username: address,
-          password: password,
-        }, headers)
+        .post(
+          "/api/auth/token",
+          {
+            username: address,
+            password: password,
+          },
+          headers
+        )
         .then((response) => {
           console.log("ログイン成功");
           this.userStore.authUser = address;
@@ -77,12 +81,12 @@ export const useUsersStore = defineStore({
           const userJSONStr = JSON.stringify(this.userStore);
           sessionStorage.setItem("user", userJSONStr);
 
-          router.push({path: "/"});
+          router.push({ path: "/" });
         })
         .catch((e) => {
           console.log(e);
         });
-    }
+    },
   },
 });
 
