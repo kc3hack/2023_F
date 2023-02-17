@@ -15,6 +15,10 @@ def get_user_by_name(name: str, db: Session):
     return db.query(models.User).filter(models.User.name == name).first()
 
 
+def get_all_books(user_id: int, db: Session):
+    return db.query(models.Books).filter(user_id == models.Books.user_id).all()
+
+
 def get_books_by_id(id: int, db: Session):
     return db.query(models.Books).filter(models.Books.id == id).first()
 

@@ -14,6 +14,14 @@ def read_books(
     return cruds.get_books_by_id(id=id, db=db)
 
 
+@router.get("/all")
+def read_all_books(
+    db: Session = Depends(database.get_db),
+    current_user: schemas.User = Depends(oauth2.get_current_user),
+):
+    return cruds.get_all_books(user_id=current_user.id, db=db)
+
+
 @router.put("/update")
 def update_books(
     id: int,
