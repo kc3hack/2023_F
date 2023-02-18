@@ -8,42 +8,54 @@ let title = ref("");
 let volume = ref("");
 let registerDate = ref("");
 
-function searchISBN(){
-  let query = isbn.value.split(' ').join('+');
+function searchISBN() {
+  let query = isbn.value.split(" ").join("+");
   // APIを取得
   const url = "https://api.openbd.jp/v1/get?isbn=" + query + "&pretty";
   //json
-  fetch(url).then(
-    res => {
+  fetch(url)
+    .then((res) => {
       return res.json();
-  }).then(data => {
-    //表紙
-    image.value = data[0].summary.cover;
-    document.getElementById('thumbnail').setAttribute('src', image.value);
-    //タイトル
-    title.value = data[0].summary.title;
-    //巻数
-    volume.value = data[0].summary.volume;
-    //登録日
-    let origin = new Date();
-    let year = origin.getFullYear();
-    let month = origin.getMonth()+1;
-    let day = origin.getDate();
-    registerDate.value = year + "/"+month +"/"+ day ;
-  }).catch((e) => {
-    alert("ISBNが存在しません.");
-  })
-};
+    })
+    .then((data) => {
+      //表紙
+      image.value = data[0].summary.cover;
+      document.getElementById("thumbnail")?.setAttribute("src", image.value);
 
+      let group = title_separete(data[0].summary.title);
+      //タイトル
+      title.value = group[1];
+      //巻数
+      volume.value = group[2];
+      //登録日
+      let origin = new Date();
+      let year = origin.getFullYear();
+      let month = origin.getMonth() + 1;
+      let day = origin.getDate();
+      registerDate.value = year + "/" + month + "/" + day;
+    })
+    .catch((e) => {
+      alert("ISBNが存在しません.");
+    });
+}
+
+function title_separete(title: string): string[] {
+  let group: string[] = title.match(/(\S*)\s.*([0-9]|[０-９]).*/) ?? [
+    "情報の取得に失敗",
+    "タイトルを取得できませんでした",
+    "巻数を取得できませんでした",
+  ];
+  return group;
+}
 
 async function addBook() {
   const data = new FormData();
-  data.append("isbn", isbn.value);//データ追加
+  data.append("isbn", isbn.value); //データ追加
   await axios
     .get("http://localhost:8000/api/books/", data) //テストurl
     .then((response) => {
       //BEから データを受け取ったときにやる処理
-      console.log(response.data);//テスト
+      console.log(response.data); //テスト
     })
     .catch((e) => {
       console.log(e);
@@ -55,20 +67,26 @@ async function addBook() {
 <template>
   <div class="background">
     <div class="outside">
-      
       <div class="search-area">
-      ISBN13:<input v-model="isbn" autofocus placeholder=" ISBN">
-      <v-btn @click="searchISBN">書籍情報取得</v-btn>
+        ISBN13:<input v-model="isbn" autofocus placeholder=" ISBN" />
+        <v-btn @click="searchISBN">書籍情報取得</v-btn>
       </div>
 
       <div class="result-area">
-        <img src="" id="thumbnail">
-        <p>タイトル:<input v-model="title" placeholder="title"></p>
-        <p>巻数:<input v-model="volume" placeholder="volume"></p>
-        <p>登録日:<input v-model="registerDate" placeholder="registerDate"></p>
+        <img src="" id="thumbnail" />
+        <p>タイトル:<input v-model="title" placeholder="title" /></p>
+        <p>巻数:<input v-model="volume" placeholder="volume" /></p>
+        <p>
+          登録日:<input v-model="registerDate" placeholder="registerDate" />
+        </p>
       </div>
 
-      <v-btn class="search-button" @click="addBook" style="background-color: yellow;">本を追加</v-btn>
+      <v-btn
+        class="search-button"
+        @click="addBook"
+        style="background-color: yellow"
+        >本を追加</v-btn
+      >
     </div>
   </div>
 </template>
@@ -92,11 +110,11 @@ async function addBook() {
   background-color: lightgray;
   border: solid;
 }
-.result-area{
+.result-area {
   background-color: lightgray;
   border: solid;
 }
-input{
+input {
   margin: 5px;
 }
 .search-button {
