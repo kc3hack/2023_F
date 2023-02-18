@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import type { Book } from "@/interfaces";
 import { useUsersStore } from "@/stores/users";
+import MenuBar from "@/components/MenuBar.vue";
 
 const userStore = useUsersStore();
 
@@ -36,6 +37,7 @@ const headers = ref(headersInit);
 </script>
 
 <template>
+  <MenuBar></MenuBar>
   <v-container>
     <v-row>
       <v-col cols="12">

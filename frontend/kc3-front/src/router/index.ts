@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
 import AppTop from "@/views/AppTop.vue";
 import AppSearch from "@/views/AppSearch.vue";
+import { useUsersStore } from "@/stores/users";
 //import Apphoge from"@/views/AppHoge.vue";
 
 const routeSettings: RouteRecordRaw[] = [
@@ -43,3 +44,14 @@ const router = createRouter({
 });
 
 export default router;
+
+router.beforeEach(async (to) => {
+  const publicPages = ["/login"];
+  const authRequired = !publicPages.includes(to.path);
+  const auth = useUsersStore();
+  if (authRequired && !auth.userStore.authUser) {
+    console.log(authRequired);
+    console.log(auth.userStore.authUser);
+    return "/login";
+  }
+});

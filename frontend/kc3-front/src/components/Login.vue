@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import axios from "axios";
+import { useUsersStore } from "@/stores/users";
+
+const userStore = useUsersStore();
 
 const address = ref("");
 const password = ref("");
@@ -12,40 +14,12 @@ function toggle() {
 
 async function newForm() {
   //新規登録
-  await axios
-    .get("https://api.openbd.jp/v1/get?isbn=978-4-7808-0204-7&pretty") //テストurl
-    .then((response) => {
-      //BEから データを受け取ったときにやる処理
-      console.log(response.data);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-
-  /*
-    await axios
-        .post("https://api.openbd.jp/v1/get?isbn=978-4-7808-0204-7&pretty", data, header)//テストurl
-        .then((response) => {
-            //BEから データを受け取ったときにやる処理
-            console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    */
+  await userStore.signup(address.value, password.value);
 }
 
 async function existForm() {
   //ログイン
-  await axios
-    .get("https://api.openbd.jp/v1/get?isbn=978-4-7808-0204-7&pretty") //テストurl
-    .then((response) => {
-      //BEから データを受け取ったときにやる処理
-      console.log(response.data);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  await userStore.login(address.value, password.value);
 }
 </script>
 
@@ -53,9 +27,9 @@ async function existForm() {
   <div class="login-background">
     <h1 class="greeting">書籍管理へようこそ</h1>
     <div class="login-block">
-      <button class="toggle" @click="toggle">
+      <v-btn class="toggle" @click="toggle">
         {{ isNew ? "ログインする方はこちら" : "新規登録の方はこちら" }}
-      </button>
+      </v-btn>
       <div>
         <div class="form">
           <label for="message">メールアドレス: </label>
@@ -66,8 +40,8 @@ async function existForm() {
             type="password"
             placeholder=" password"
           /><br />
-          <button @click="newForm" v-if="isNew" class="submit">新規登録</button>
-          <button @click="existForm" v-else class="submit">ログイン</button>
+          <v-btn @click="newForm" v-if="isNew" class="submit">新規登録</v-btn>
+          <v-btn @click="existForm" v-else class="submit">ログイン</v-btn>
         </div>
       </div>
     </div>
