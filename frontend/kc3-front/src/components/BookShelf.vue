@@ -5,6 +5,9 @@ import { useUsersStore } from "@/stores/users";
 import type { Book } from "@/interfaces";
 
 const userStore = useUsersStore();
+const test = userStore.userStore.authUser;
+const a = ref(test);
+userStore.Init();
 
 const bookList = computed((): Map<number, Book> => {
   return userStore.getBooks;

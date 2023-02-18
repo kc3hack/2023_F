@@ -81,12 +81,7 @@ async function addBook() {
         </p>
       </div>
 
-      <v-btn
-        class="search-button"
-        @click="addBook"
-        style="background-color: yellow"
-        >本を追加</v-btn
-      >
+      <v-btn class="search-button" @click="addBook" style="background-color: yellow">本を追加</v-btn>
     </div>
   </div>
 </template>
@@ -95,6 +90,7 @@ async function addBook() {
 .background {
   padding: 150px;
 }
+
 .outside {
   background-color: #e7d0a9;
   margin-left: auto;
@@ -106,17 +102,21 @@ async function addBook() {
   border: thick double;
   border-radius: 10px;
 }
+
 .search-area {
   background-color: lightgray;
   border: solid;
 }
+
 .result-area {
   background-color: lightgray;
   border: solid;
 }
+
 input {
   margin: 5px;
 }
+
 .search-button {
   border-radius: 10px;
   padding: 4px;

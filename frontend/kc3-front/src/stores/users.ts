@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import type { Book, User } from "@/interfaces";
+import axios from "axios";
+import router from "@/router";
 
 interface State {
   userStore: User;
@@ -21,13 +23,69 @@ export const useUsersStore = defineStore({
   },
   actions: {
     //データの変更処理
-    testInit(): void {
-      this.userStore.token = "token";
-      this.userStore.authUser = "example.com";
-      this.userStore.books = bookListInit;
+    Init() {
+      let user;
+      const userJSONStr = sessionStorage.getItem("user");
+      if (userJSONStr != undefined) {
+        const userJSON = JSON.parse(userJSONStr);
+        user = userJSON;
+        this.userStore = user;
+        this.userStore.books = bookListInit; //あとでけす
+      }
     },
     addBook(book: Book): void {
       this.userStore.books.set(book.isbn, book);
+    },
+    async signup(address: string, password: string) {
+      await axios
+        .post("/api/users/create", {
+          name: address,
+          password: password,
+        })
+        .then((response) => {
+          //BEから データを受け取ったときにやる処理
+          console.log("新規登録成功");
+          this.userStore.authUser = address;
+          this.userStore.token = response.data.access_token;
+
+          const userJSONStr = JSON.stringify(this.userStore);
+          sessionStorage.setItem("user", userJSONStr);
+
+          router.push({ path: "/" });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    async login(address: string, password: string) {
+      const headers = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      };
+
+      await axios
+        .post(
+          "/api/auth/token",
+          {
+            username: address,
+            password: password,
+          },
+          headers
+        )
+        .then((response) => {
+          console.log("ログイン成功");
+          this.userStore.authUser = address;
+          this.userStore.token = response.data.access_token;
+
+          const userJSONStr = JSON.stringify(this.userStore);
+          sessionStorage.setItem("user", userJSONStr);
+
+          router.push({ path: "/" });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 });
