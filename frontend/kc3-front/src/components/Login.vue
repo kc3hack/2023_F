@@ -76,7 +76,6 @@ async function existForm() {
 }
 .form {
   text-align: center;
-  margin: 10px;
 }
 .submit {
   margin: 15px;

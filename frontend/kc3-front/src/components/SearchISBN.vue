@@ -24,7 +24,8 @@ function searchISBN() {
 
       let group = title_separete(data[0].summary.title);
       //タイトル
-      title.value = group[1];
+      title.value = group[1].replace("（", "").replace("(", "");
+      if(title.value === "タイトルを取得できませんでした") title.value = data[0].summary.title;
       //巻数
       volume.value = group[2];
       //登録日
@@ -40,7 +41,7 @@ function searchISBN() {
 }
 
 function title_separete(title: string): string[] {
-  let group: string[] = title.match(/(\S*)\s.*([0-9]|[０-９]).*/) ?? [
+  let group: string[] = title.match(/(\S*)\s?.*([0-9]|[０-９]).*/) ?? [
     "情報の取得に失敗",
     "タイトルを取得できませんでした",
     "巻数を取得できませんでした",
@@ -49,23 +50,26 @@ function title_separete(title: string): string[] {
 }
 
 async function addBook() {
-  const authorization = "Bearer " + JSON.parse(sessionStorage.getItem("user")).token;
+  const authorization =
+    "Bearer " + JSON.parse(sessionStorage.getItem("user")).token;
   const header = {
     headers: {
-      "accept": "application/json",
-      "Authorization": authorization,
+      accept: "application/json",
+      Authorization: authorization,
       "Content-Type": "application/json",
-    }
-  }
+    },
+  };
 
   await axios
     .post(
       "/api/books/create",
       {
-        "title": title.value === "タイトルを取得できませんでした" ? null : title.value,
-        "have_books": isNaN(volume.value) ? Number(volume.value) : null,
-        "resist_date": registerDate.value,
-        "new_books": null, // よくわからない項目
+        title:
+          title.value === "タイトルを取得できませんでした" ? null : title.value,
+        have_books: 0,
+        resist_date: registerDate.value,
+        new_books: isNaN(volume.value) ? Number(volume.value) : null, // よくわからない項目
+        image_url: image.value,
       },
       header
     ) //テストurl
@@ -97,7 +101,12 @@ async function addBook() {
         </p>
       </div>
 
-      <v-btn class="search-button" @click="addBook" style="background-color: yellow">本を追加</v-btn>
+      <v-btn
+        class="search-button"
+        @click="addBook"
+        style="background-color: yellow"
+        >本を追加</v-btn
+      >
     </div>
   </div>
 </template>
