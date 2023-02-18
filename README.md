@@ -47,6 +47,7 @@
   - JavaScript/TypeScript
   - Vue.js
   - Vuetify
+  - openBD(API)
 - バックエンド
   - Python
   - FastAPI
