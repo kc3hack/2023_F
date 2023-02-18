@@ -33,6 +33,5 @@ class Books(BaseModel):
 
 class CreateBook(BaseModel):
     title: Union[str, None]
-    have_books: Union[int, None]
     resist_date: Union[str, None]
     new_books: Union[int, None]
