@@ -37,7 +37,6 @@ def update_book(id: int, book: schemas.Books, db: Session):
 
 def get_shelf(user_id:int, db: Session):
     books = db.query(models.Books).filter(user_id == models.Books.user_id, models.Books.is_inshelf == True).all()
-    print(books)
     if not books:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=F"books not found")
     
