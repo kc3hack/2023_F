@@ -1,6 +1,7 @@
 # フロントエンドに渡す情報を定義する
 
 from pydantic import BaseModel
+from typing import Union
 
 
 # ユーザーの名前
@@ -23,8 +24,15 @@ class User(BaseUser):
 
 # 本の情報
 class Books(BaseModel):
-    title: str
-    have_books: int
-    resist_date: str
-    new_books: int
-    user_id: int
+    title: Union[str, None]
+    have_books: Union[int, None]
+    resist_date: Union[str, None]
+    new_books: Union[int, None]
+    user_id: Union[int, None]
+
+
+class CreateBook(BaseModel):
+    title: Union[str, None]
+    have_books: Union[int, None]
+    resist_date: Union[str, None]
+    new_books: Union[int, None]

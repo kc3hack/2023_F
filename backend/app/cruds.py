@@ -15,6 +15,20 @@ def get_user_by_name(name: str, db: Session):
     return db.query(models.User).filter(models.User.name == name).first()
 
 
+def create_book(book: schemas.CreateBook, user_id: int, db: Session):
+    new_book = models.Books(
+        title=book.title,
+        have_books=book.have_books,
+        resist_date=book.resist_date,
+        new_books=book.new_books,
+        user_id=user_id,
+    )
+    db.add(new_book)
+    db.commit()
+    db.refresh(new_book)
+    return new_book
+
+
 def get_all_books(user_id: int, db: Session):
     return db.query(models.Books).filter(user_id == models.Books.user_id).all()
 

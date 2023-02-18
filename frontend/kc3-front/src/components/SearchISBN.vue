@@ -49,10 +49,26 @@ function title_separete(title: string): string[] {
 }
 
 async function addBook() {
-  const data = new FormData();
-  data.append("isbn", isbn.value); //データ追加
+  const authorization = "Bearer " + JSON.parse(sessionStorage.getItem("user")).token;
+  const header = {
+    headers: {
+      "accept": "application/json",
+      "Authorization": authorization,
+      "Content-Type": "application/json",
+    }
+  }
+
   await axios
-    .get("http://localhost:8000/api/books/", data) //テストurl
+    .post(
+      "/api/books/create",
+      {
+        "title": title.value === "タイトルを取得できませんでした" ? null : title.value,
+        "have_books": isNaN(volume.value) ? Number(volume.value) : null,
+        "resist_date": registerDate.value,
+        "new_books": null, // よくわからない項目
+      },
+      header
+    ) //テストurl
     .then((response) => {
       //BEから データを受け取ったときにやる処理
       console.log(response.data); //テスト
