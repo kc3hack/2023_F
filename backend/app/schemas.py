@@ -1,12 +1,11 @@
 # フロントエンドに渡す情報を定義する
 
 from pydantic import BaseModel
-
+from typing import List
 
 # ユーザーの名前
 class BaseUser(BaseModel):
     name: str
-
     class Config:
         orm_model = True
 
@@ -19,7 +18,8 @@ class CreateUser(BaseUser):
 # ユーザーの名前とid
 class User(BaseUser):
     id: int
-
+    class Config:
+        orm_model = True
 
 # 本の情報
 class Books(BaseModel):
@@ -28,3 +28,15 @@ class Books(BaseModel):
     resist_date: str
     new_books: int
     user_id: int
+    class Config:
+        orm_model = True
+
+class Shelf(BaseModel):
+    user_id:int
+    books_id:int
+    books:List[Books]
+    class Config:
+        orm_model = True
+
+class User_shelf(BaseUser):
+    shelf:Shelf

@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends
-from .routers import auth, books, users
+from .routers import auth, books, users, Shelf
 from . import schemas, oauth2, models, database
 
 models.Base.metadata.create_all(bind=database.engine)
@@ -7,7 +7,7 @@ models.Base.metadata.create_all(bind=database.engine)
 app = FastAPI()
 
 prefix = "/api"
-routers = [auth.router, books.router, users.router]
+routers = [auth.router, books.router, users.router, Shelf.router]
 [app.include_router(router=router, prefix=prefix) for router in routers]
 
 
