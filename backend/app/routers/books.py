@@ -30,3 +30,10 @@ def update_books(
     current_user: schemas.User = Depends(oauth2.get_current_user),
 ):
     return cruds.update_book(id=id, book=book, db=db)
+
+@router.get("/shelf")
+def read_shelf_books(
+    db: Session = Depends(database.get_db),
+    current_user: schemas.User = Depends(oauth2.get_current_user)
+):
+    return cruds.get_shelf(user_id=current_user.id, db=db)
