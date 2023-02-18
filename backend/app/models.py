@@ -33,4 +33,4 @@ class Shelf(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, nullable=False)
-    book_id = relationship("Books", back_populates="shelf")
+    books = relationship("Books", back_populates="shelf")

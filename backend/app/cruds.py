@@ -29,3 +29,10 @@ def update_book(id: int, book: schemas.Books, db: Session):
     db.commit()
     db.refresh(updated_book)
     return updated_book
+
+def registar_shelf(user_id:int, db:Session):
+    shelf = models.Shelf(user_id=user_id)
+    db.add(shelf)
+    db.commit()
+    db.refresh(shelf)
+    return(shelf)

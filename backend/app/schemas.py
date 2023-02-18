@@ -27,10 +27,10 @@ class Books(BaseModel):
     have_books: int
     resist_date: str
     new_books: int
-    user_id: int
     class Config:
         orm_model = True
 
+#本棚の情報
 class Shelf(BaseModel):
     user_id:int
     books_id:int
