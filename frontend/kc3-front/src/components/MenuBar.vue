@@ -47,7 +47,7 @@ function openSNS() {
 </script>
 
 <template>
-  <div class="menu">
+  <div class="menu ml-5">
     <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
     <v-navigation-drawer location="end" v-model="drawer" fixed temporary>
