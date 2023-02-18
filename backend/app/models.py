@@ -24,3 +24,4 @@ class Books(Base):
     new_books = Column(Integer)
     user_id = Column(Integer)
     is_inshelf = Column(BOOLEAN)
+    image_url = Column(String(1024))

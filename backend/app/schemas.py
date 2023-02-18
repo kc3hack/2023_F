@@ -29,6 +29,7 @@ class Books(BaseModel):
     resist_date: Union[str, None]
     new_books: Union[int, None]
     user_id: Union[int, None]
+    image_url: Union[str, None]
 
 
 class CreateBook(BaseModel):
@@ -36,3 +37,4 @@ class CreateBook(BaseModel):
     have_books: Union[int, None]
     resist_date: Union[str, None]
     new_books: Union[int, None]
+    image_url: Union[str, None]

@@ -23,6 +23,7 @@ def create_book(book: schemas.CreateBook, user_id: int, db: Session):
         resist_date=book.resist_date,
         new_books=book.new_books,
         user_id=user_id,
+        image_url=book.image_url
     )
     db.add(new_book)
     db.commit()

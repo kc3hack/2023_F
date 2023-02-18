@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import BookComponent from "./BookComponent.vue";
 import { useUsersStore } from "@/stores/users";
 import type { Book } from "@/interfaces";
 
 const userStore = useUsersStore();
-const test = userStore.userStore.authUser;
-const a = ref(test);
 userStore.Init();
 
 const bookList = computed((): Map<number, Book> => {
