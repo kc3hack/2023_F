@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from . import models, schemas, bcrypt
+from fastapi import HTTPException, status
 
 
 def create_user(user: schemas.CreateUser, db: Session):
@@ -33,3 +34,10 @@ def update_book(id: int, book: schemas.Books, db: Session):
     db.commit()
     db.refresh(updated_book)
     return updated_book
+
+def get_shelf(user_id:int, db: Session):
+    books = db.query(models.Books).filter(user_id == models.Books.user_id, models.Books.is_inshelf == True).all()
+    if not books:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=F"books not found")
+    
+    return db.query(models.Books).filter(user_id == models.Books.user_id, models.Books.is_inshelf == True).all()

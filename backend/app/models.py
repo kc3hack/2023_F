@@ -1,6 +1,6 @@
 # データベースに登録する情報を定義する
 
-from sqlalchemy import Column, Integer, String, TIMESTAMP
+from sqlalchemy import Column, Integer, String, TIMESTAMP, BOOLEAN
 from .database import Base
 
 
@@ -23,3 +23,4 @@ class Books(Base):
     resist_date = Column(TIMESTAMP(timezone=True))
     new_books = Column(Integer)
     user_id = Column(Integer)
+    is_inshelf = Column(BOOLEAN)
