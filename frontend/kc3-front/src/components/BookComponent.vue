@@ -15,7 +15,7 @@ interface Props {
   isbn: number;
   title: string;
   count?: number;
-  date: Date;
+  date: string;
   latest_num?: number;
   image_url?: string;
   isBookshelf: boolean;
@@ -65,7 +65,7 @@ interface Props {
                   </v-avatar>
                   <div class="me-auto mt-6 ms-auto">
                     <v-card-title>登録日</v-card-title>
-                    <v-card-text>{{ date.toLocaleDateString() }}</v-card-text>
+                    <v-card-text>{{ date.substring(0, 10) }}</v-card-text>
                   </div>
                 </div>
               </v-card>

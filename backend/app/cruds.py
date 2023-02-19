@@ -34,7 +34,7 @@ def create_book(book: schemas.CreateBook, user_id: int, db: Session):
         resist_date=book.resist_date,
         new_books=book.new_books,
         user_id=user_id,
-        image_url=book.image_url
+        image_url=book.image_url,
     )
     db.add(new_book)
     db.commit()
@@ -70,11 +70,12 @@ WHERE
     keys = [
         "id",
         "title",
-        "have_books",
-        "resist_date",
-        "new_books",
+        "count",
+        "date",
+        "latest_num",
         "user_id",
         "is_inshelf",
+        "image_url",
     ]
     return [dict(zip(keys, row)) for row in response]
 

@@ -68,7 +68,7 @@ async function addBook() {
           title.value === "タイトルを取得できませんでした" ? null : title.value,
         have_books: 0,
         resist_date: registerDate.value,
-        new_books: isNaN(volume.value) ? Number(volume.value) : null, // よくわからない項目
+        new_books: Number(volume.value), // よくわからない項目
         image_url: image.value,
       },
       header
