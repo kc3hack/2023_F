@@ -6,10 +6,19 @@ import { ref } from "vue";
   <header>
     <v-app-bar app color="blue" dark>
       <v-app-bar-title>
-        <router-link to="/" style="text-decoration: none; color: inherit">
-          書籍管理アプリ(仮)
+        <router-link to="/" class="header">
+          Shelfie
         </router-link>
       </v-app-bar-title>
     </v-app-bar>
   </header>
 </template>
+
+<style scoped>
+.header {
+  text-decoration: none;
+  color: inherit;
+  font-size: 30px;
+  margin-left: 2%;
+}
+</style>
