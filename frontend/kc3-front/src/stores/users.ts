@@ -132,3 +132,50 @@ bookListInit.set(2222224222223, {
   latest_num: 1,
   image_url: "https://cover.openbd.jp/9784041011102.jpg",
 });
+
+bookListInit.set(22222242222222232, {
+  isbn: 2222224222223,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+
+bookListInit.set(222222422222222, {
+  isbn: 2222224222223,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+
+bookListInit.set(2222224222221, {
+  isbn: 2222224222223,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+
+bookListInit.set(2222224222220, {
+  isbn: 2222224222223,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+
+bookListInit.set(2222224222227, {
+  isbn: 2222224222223,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+
+

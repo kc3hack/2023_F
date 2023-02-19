@@ -4,7 +4,7 @@ import { ref } from "vue";
 
 <template>
   <header>
-    <v-app-bar app color="blue" dark>
+    <v-app-bar app color="green" dark>
       <v-app-bar-title>
         <router-link to="/" class="header">
           Shelfie

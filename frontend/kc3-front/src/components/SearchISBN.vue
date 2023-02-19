@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import axios from "axios";
+import router from "@/router";
 
 let isbn = ref("");
 let image = ref("");
@@ -76,6 +77,7 @@ async function addBook() {
     .then((response) => {
       //BEから データを受け取ったときにやる処理
       console.log(response.data); //テスト
+      router.push({path: "/"})
     })
     .catch((e) => {
       console.log(e);

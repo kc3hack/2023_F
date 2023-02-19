@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import BookComponent from "./BookComponent.vue";
 import { useUsersStore } from "@/stores/users";
 import type { Book } from "@/interfaces";
@@ -7,17 +7,28 @@ import type { Book } from "@/interfaces";
 const userStore = useUsersStore();
 userStore.Init();
 
-const bookList = computed((): Map<number, Book> => {
-  return userStore.getBooks;
+const bookList = computed((): Book[][] => {
+  const list = [...userStore.getBooks.values()];
+  console.log(list)
+  const result = [
+    list.slice(0,5),
+    list.slice(5,10),
+    list.slice(10,15),
+    list.slice(15,20),
+    list.slice(20,25),
+  ]
+  console.log(result)
+  return result;
 });
 </script>
+
 
 <template>
   <v-container class="wood_outline" id="book-origin">
     <v-row class="bg none_books" dense>
       <BookComponent
-        v-for="[id, book] in bookList"
-        :key="id"
+        v-for="(book, index) in bookList[0]"
+        :key="index"
         :isbn="book.isbn"
         :title="book.title"
         :count="book.count"
@@ -31,8 +42,8 @@ const bookList = computed((): Map<number, Book> => {
 
     <v-row class="bg none_books" dense>
       <BookComponent
-        v-for="[id, book] in bookList"
-        :key="id"
+        v-for="(book, index) in bookList[1]"
+        :key="index"
         :isbn="book.isbn"
         :title="book.title"
         :count="book.count"
@@ -46,8 +57,8 @@ const bookList = computed((): Map<number, Book> => {
 
     <v-row class="bg none_books" dense>
       <BookComponent
-        v-for="[id, book] in bookList"
-        :key="id"
+        v-for="(book, index) in bookList[2]"
+        :key="index"
         :isbn="book.isbn"
         :title="book.title"
         :count="book.count"
@@ -61,8 +72,8 @@ const bookList = computed((): Map<number, Book> => {
 
     <v-row class="bg none_books" dense>
       <BookComponent
-        v-for="[id, book] in bookList"
-        :key="id"
+        v-for="(book, index) in bookList[3]"
+        :key="index"
         :isbn="book.isbn"
         :title="book.title"
         :count="book.count"
@@ -74,10 +85,10 @@ const bookList = computed((): Map<number, Book> => {
 
     <h2 class="wood_line"></h2>
 
-    <v-row class="bg" dense>
+    <v-row class="bg none_books" dense>
       <BookComponent
-        v-for="[id, book] in bookList"
-        :key="id"
+        v-for="(book, index) in bookList[4]"
+        :key="index"
         :isbn="book.isbn"
         :title="book.title"
         :count="book.count"
