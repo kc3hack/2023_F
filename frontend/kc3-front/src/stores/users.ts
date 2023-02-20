@@ -33,8 +33,8 @@ export const useUsersStore = defineStore({
         this.userStore.books = bookListInit; //あとでけす
       }
     },
-    addBook(book: Book): void {
-      this.userStore.books.set(book.isbn, book);
+    addBook(id: number ,book: Book): void {
+      this.userStore.books.set(id, book);
     },
     async signup(address: string, password: string) {
       await axios
@@ -94,7 +94,7 @@ const bookListInit = new Map<number, Book>();
 
 bookListInit.set(11111111111, {
   isbn: 11111111111,
-  title: "sample",
+  title: "2.5次元の誘惑",
   count: 1,
   date: new Date(2023, 2, 12),
   latest_num: 1,
@@ -132,3 +132,43 @@ bookListInit.set(2222224222223, {
   latest_num: 1,
   image_url: "https://cover.openbd.jp/9784041011102.jpg",
 });
+
+bookListInit.set(22222242222222232, {
+  isbn: 2222224222223,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+
+bookListInit.set(222222422222222, {
+  isbn: 2222224222223,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+
+bookListInit.set(2222224222220, {
+  isbn: 9784063878684,
+  title: "test",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784041011102.jpg",
+});
+bookListInit.set(2222224222221, {
+  isbn: 2222224222223,
+  title: "亜人",
+  count: 1,
+  date: new Date(2023, 2, 12),
+  latest_num: 1,
+  image_url: "https://cover.openbd.jp/9784063878684.jpg",
+});
+
+
+
+
+

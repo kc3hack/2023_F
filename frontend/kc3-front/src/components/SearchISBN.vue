@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import axios from "axios";
+import router from "@/router";
+
+import { useUsersStore } from "@/stores/users";
 
 let isbn = ref("");
 let image = ref("");
 let title = ref("");
 let volume = ref("");
 let registerDate = ref("");
+
+const userStore = useUsersStore();
 
 function searchISBN() {
   let query = isbn.value.split(" ").join("+");
@@ -48,6 +53,7 @@ function title_separete(title: string): string[] {
   ];
   return group;
 }
+let count = 0;
 
 async function addBook() {
   const authorization =
@@ -59,23 +65,27 @@ async function addBook() {
       "Content-Type": "application/json",
     },
   };
-
-  await axios
-    .post(
-      "/api/books/create",
-      {
+  const datas = {
         title:
           title.value === "タイトルを取得できませんでした" ? null : title.value,
         have_books: 0,
         resist_date: registerDate.value,
         new_books: isNaN(volume.value) ? Number(volume.value) : null, // よくわからない項目
         image_url: image.value,
-      },
+  }
+
+  userStore.addBook(count, datas);
+
+  await axios
+    .post(
+      "/api/books/create",
+      datas,
       header
     ) //テストurl
     .then((response) => {
       //BEから データを受け取ったときにやる処理
       console.log(response.data); //テスト
+      router.push({path: "/"})
     })
     .catch((e) => {
       console.log(e);
